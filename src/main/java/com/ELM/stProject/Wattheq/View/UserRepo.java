@@ -1,4 +1,4 @@
-package com.ELM.stProject.Wattheq.Service;
+package com.ELM.stProject.Wattheq.View;
 
 import com.ELM.stProject.Wattheq.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

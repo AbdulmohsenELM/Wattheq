@@ -1,7 +1,7 @@
 package com.ELM.stProject.Wattheq.Controller;
 
 import com.ELM.stProject.Wattheq.Model.User;
-import com.ELM.stProject.Wattheq.Service.UserService;
+import com.ELM.stProject.Wattheq.View.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.ELM.stProject.Wattheq.Service;
+package com.ELM.stProject.Wattheq.View;
 
 import com.ELM.stProject.Wattheq.Model.User;
 
