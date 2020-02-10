@@ -1,4 +1,4 @@
-package com.ELM.stProject.Wattheq;
+package com.ELM.stProject.Wattheq.Model;
 
 import javax.persistence.*;
 

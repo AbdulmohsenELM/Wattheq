@@ -1,6 +1,6 @@
-package com.ELM.stProject.Wattheq;
+package com.ELM.stProject.Wattheq.Service;
 
-import org.springframework.stereotype.Service;
+import com.ELM.stProject.Wattheq.Model.User;
 
 import java.util.List;
 

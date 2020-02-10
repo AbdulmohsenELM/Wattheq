@@ -1,9 +1,9 @@
-package com.ELM.stProject.Wattheq;
+package com.ELM.stProject.Wattheq.Service;
 
 
+import com.ELM.stProject.Wattheq.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 @Service
