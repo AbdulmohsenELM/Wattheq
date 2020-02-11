@@ -9,8 +9,8 @@ public interface UserService {
 
     public User addUser(User user);
     public List<User> getAllUsers();
-    public User getUser(int natID);
-    public User updateUser(User user, int natID);
-    public void deleteUser(int natID);
+    public User getUser(int userID);
+    public User updateUser(User user, int userID);
+    public void deleteUser(int userID);
     public void deleteAllUsers();
 }

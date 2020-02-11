@@ -25,19 +25,19 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/GetUser/{natID}")
-    public User getUser(@PathVariable("natID") int natID) {
-        return userService.getUser(natID);
+    @GetMapping(value = "/GetUser/{userID}")
+    public User getUser(@PathVariable("userID") int userID) {
+        return userService.getUser(userID);
     }
 
-    @PutMapping(value = "/UpdateUser/{natID}")
-    public User updateUser(@RequestBody User user, @PathVariable("natID") int natID) {
-        return userService.updateUser(user, natID);
+    @PutMapping(value = "/UpdateUser/{userID}")
+    public User updateUser(@RequestBody User user, @PathVariable("userID") int userID) {
+        return userService.updateUser(user, userID);
     }
 
-    @DeleteMapping(value = "/DeleteUser/{natID}")
-    public void deleteUser(@PathVariable("natID") int natID) {
-        userService.deleteUser(natID);
+    @DeleteMapping(value = "/DeleteUser/{userID}")
+    public void deleteUser(@PathVariable("userID") int userID) {
+        userService.deleteUser(userID);
     }
 
     @DeleteMapping(value = "/DeleteAllUsers")

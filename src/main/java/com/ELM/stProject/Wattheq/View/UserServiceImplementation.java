@@ -23,19 +23,19 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public User getUser(int natID) {
-        return repo.findById(natID).get();
+    public User getUser(int userID) {
+        return repo.findById(userID).get();
     }
 
     @Override
-    public User updateUser(User user, int natID) {
-        user.setNationalID(natID);
+    public User updateUser(User user, int userID) {
+        user.setNationalID(userID);
         return repo.save(user);
     }
 
     @Override
-    public void deleteUser(int natID) {
-        repo.deleteById(natID);
+    public void deleteUser(int userID) {
+        repo.deleteById(userID);
     }
 
     @Override
