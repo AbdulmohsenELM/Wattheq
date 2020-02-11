@@ -1,9 +1,8 @@
-package com.ELM.stProject.Wattheq.View;
+package com.ELM.stProject.Wattheq.Service;
 
 import com.ELM.stProject.Wattheq.Model.User;
 
 import java.util.List;
-
 
 public interface UserService {
 

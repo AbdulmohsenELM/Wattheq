@@ -1,11 +1,13 @@
 package com.ELM.stProject.Wattheq.View;
 
-
 import com.ELM.stProject.Wattheq.Model.User;
+import com.ELM.stProject.Wattheq.Repository.UserRepo;
+import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class UserServiceImplementation implements UserService {
 
