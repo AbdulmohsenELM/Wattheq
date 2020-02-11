@@ -1,9 +1,6 @@
 package com.ELM.stProject.Wattheq.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity(name = "Certificates")
 @Table
@@ -24,14 +21,18 @@ public class Certificate {
     private String certificateStatus;
     @Column(name = "CertificateDocument")
     private String certificateDocument;
-    @Column(name = "UserID")
-    private int userID;
-    @Column(name = "OrgID")
-    private int orgID;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "UserID")
+    private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "OrganizationID")
+    private Organization organization;
 
     public Certificate() {}
 
-    public Certificate(int certificateID, String certificateName, String certificateType, String certificateDescription, String certificateDate, String certificateStatus, String certificateDocument, int userID, int orgID) {
+    public Certificate(int certificateID, String certificateName, String certificateType, String certificateDescription, String certificateDate, String certificateStatus, String certificateDocument) {
         this.certificateID = certificateID;
         this.certificateName = certificateName;
         this.certificateType = certificateType;
@@ -39,8 +40,6 @@ public class Certificate {
         this.certificateDate = certificateDate;
         this.certificateStatus = certificateStatus;
         this.certificateDocument = certificateDocument;
-        this.userID = userID;
-        this.orgID = orgID;
     }
 
     public int getCertificateID() {
@@ -99,19 +98,19 @@ public class Certificate {
         this.certificateDocument = certificateDocument;
     }
 
-    public int getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getOrgID() {
-        return orgID;
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public void setOrgID(int orgID) {
-        this.orgID = orgID;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 }

@@ -1,6 +1,8 @@
 package com.ELM.stProject.Wattheq.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -20,15 +22,23 @@ public class User {
     @Column(name = "Password")
     private String password;
     @Column(name = "NationalID")
-    private int nationalID;
-    @Column(name = "AuthID")
-    private int authID;
+    private Long nationalID;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Certificate> certificates = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "AuthorityID")
+    private Authority authority;
+
     @Column(name = "OrgID")
     private int orgID;
 
+
     public User() {}
 
-    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, int nationalID, int authID, int orgID) {
+    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, Long nationalID, int orgID) {
         this.userID = userID;
         this.fullName = fullName;
         this.dob = dob;
@@ -36,7 +46,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.nationalID = nationalID;
-        this.authID = authID;
         this.orgID = orgID;
     }
 
@@ -88,20 +97,12 @@ public class User {
         this.password = password;
     }
 
-    public int getNationalID() {
+    public Long getNationalID() {
         return nationalID;
     }
 
-    public void setNationalID(int nationalID) {
+    public void setNationalID(Long nationalID) {
         this.nationalID = nationalID;
-    }
-
-    public int getAuthID() {
-        return authID;
-    }
-
-    public void setAuthID(int authID) {
-        this.authID = authID;
     }
 
     public int getOrgID() {
@@ -110,5 +111,21 @@ public class User {
 
     public void setOrgID(int orgID) {
         this.orgID = orgID;
+    }
+
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 }

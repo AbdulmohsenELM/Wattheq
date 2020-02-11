@@ -31,7 +31,7 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User updateUser(User user, int userID) {
-        user.setNationalID(userID);
+        user.setUserID(userID);
         return repo.save(user);
     }
 

@@ -1,9 +1,8 @@
 package com.ELM.stProject.Wattheq.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Authority")
 @Table
@@ -16,6 +15,9 @@ public class Authority {
     private String authorityName;
     @Column(name = "AuthorityDescription")
     private String authorityDescription;
+
+    @OneToMany(mappedBy = "authority", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 
     public Authority() {}
 
@@ -47,5 +49,13 @@ public class Authority {
 
     public void setAuthorityDescription(String authorityDescription) {
         this.authorityDescription = authorityDescription;
+    }
+
+    public List<User> getAuthorities() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

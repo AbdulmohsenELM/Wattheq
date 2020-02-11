@@ -12,9 +12,9 @@ public class Shared {
     @Id
     @Column(name = "SharedID")
     private int sharedID;
-    @Column(name = "UserID")
+    @Column(name = "UserID") //ManyToOne
     private int userID;
-    @Column(name = "CertificateID")
+    @Column(name = "CertificateID") //ManyToMany
     private int certificateID;
     @Column(name = "SharedDate")
     private String sharedDate;

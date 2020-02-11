@@ -1,9 +1,8 @@
 package com.ELM.stProject.Wattheq.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Organizations")
 @Table
@@ -18,6 +17,9 @@ public class Organization {
     private String organizationAddress;
     @Column(name = "OrganizationContactNumber")
     private String organizationContactNumber;
+
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    private List<Certificate> certificates = new ArrayList<>();
 
     public Organization() {}
 
@@ -58,5 +60,13 @@ public class Organization {
 
     public void setOrganizationContactNumber(String organizationContactNumber) {
         this.organizationContactNumber = organizationContactNumber;
+    }
+
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
     }
 }
