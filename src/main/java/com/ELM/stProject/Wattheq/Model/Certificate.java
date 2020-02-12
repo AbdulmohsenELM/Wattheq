@@ -24,11 +24,11 @@ public class Certificate {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "UserID")
-    private User user;
+    private User userCertificates;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "OrganizationID")
-    private Organization organization;
+    private Organization certificateOrganization;
 
     public Certificate() {}
 
@@ -99,18 +99,18 @@ public class Certificate {
     }
 
     public User getUser() {
-        return user;
+        return userCertificates;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(User userCertificates) {
+        this.userCertificates = userCertificates;
     }
 
     public Organization getOrganization() {
-        return organization;
+        return certificateOrganization;
     }
 
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
+    public void setOrganization(Organization certificateOrganization) {
+        this.certificateOrganization = certificateOrganization;
     }
 }

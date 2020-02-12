@@ -24,21 +24,21 @@ public class User {
     @Column(name = "NationalID")
     private Long nationalID;
 
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userCertificates", cascade = CascadeType.ALL)
     private List<Certificate> certificates = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "AuthorityID")
     private Authority authority;
 
-    @Column(name = "OrgID")
-    private int orgID;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "OrganizationID")
+    private Organization userOrganization;
 
 
     public User() {}
 
-    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, Long nationalID, int orgID) {
+    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, Long nationalID) {
         this.userID = userID;
         this.fullName = fullName;
         this.dob = dob;
@@ -46,7 +46,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.nationalID = nationalID;
-        this.orgID = orgID;
     }
 
     public int getUserID() {
@@ -105,14 +104,6 @@ public class User {
         this.nationalID = nationalID;
     }
 
-    public int getOrgID() {
-        return orgID;
-    }
-
-    public void setOrgID(int orgID) {
-        this.orgID = orgID;
-    }
-
     public List<Certificate> getCertificates() {
         return certificates;
     }
@@ -127,5 +118,13 @@ public class User {
 
     public void setAuthority(Authority authority) {
         this.authority = authority;
+    }
+
+    public Organization getOrganization() {
+        return userOrganization;
+    }
+
+    public void setOrganization(Organization userOrganization) {
+        this.userOrganization = userOrganization;
     }
 }

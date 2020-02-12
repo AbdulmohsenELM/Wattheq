@@ -18,8 +18,11 @@ public class Organization {
     @Column(name = "OrganizationContactNumber")
     private String organizationContactNumber;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "certificateOrganization", cascade = CascadeType.ALL)
     private List<Certificate> certificates = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userOrganization", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 
     public Organization() {}
 
@@ -68,5 +71,13 @@ public class Organization {
 
     public void setCertificates(List<Certificate> certificates) {
         this.certificates = certificates;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
