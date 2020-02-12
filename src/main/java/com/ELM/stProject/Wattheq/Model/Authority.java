@@ -51,7 +51,7 @@ public class Authority {
         this.authorityDescription = authorityDescription;
     }
 
-    public List<User> getAuthorities() {
+    public List<User> getUsers() {
         return users;
     }
 

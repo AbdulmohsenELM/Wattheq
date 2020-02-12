@@ -130,4 +130,20 @@ public class User {
     public void setOrganization(Organization userOrganization) {
         this.userOrganization = userOrganization;
     }
+
+    public Organization getUserOrganization() {
+        return userOrganization;
+    }
+
+    public void setUserOrganization(Organization userOrganization) {
+        this.userOrganization = userOrganization;
+    }
+
+    public List<Shared> getShareds() {
+        return shareds;
+    }
+
+    public void setShareds(List<Shared> shareds) {
+        this.shareds = shareds;
+    }
 }

@@ -125,4 +125,28 @@ public class Certificate {
     public void setOrganization(Organization certificateOrganization) {
         this.certificateOrganization = certificateOrganization;
     }
+
+    public User getUserCertificates() {
+        return userCertificates;
+    }
+
+    public void setUserCertificates(User userCertificates) {
+        this.userCertificates = userCertificates;
+    }
+
+    public Organization getCertificateOrganization() {
+        return certificateOrganization;
+    }
+
+    public void setCertificateOrganization(Organization certificateOrganization) {
+        this.certificateOrganization = certificateOrganization;
+    }
+
+    public Set<Shared> getShareds() {
+        return shareds;
+    }
+
+    public void setShareds(Set<Shared> shareds) {
+        this.shareds = shareds;
+    }
 }

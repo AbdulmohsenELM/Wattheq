@@ -56,4 +56,20 @@ public class Shared {
     public void setSharedUrl(String sharedUrl) {
         this.sharedUrl = sharedUrl;
     }
+
+    public User getUserShareds() {
+        return userShareds;
+    }
+
+    public void setUserShareds(User userShareds) {
+        this.userShareds = userShareds;
+    }
+
+    public Set<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(Set<Certificate> certificates) {
+        this.certificates = certificates;
+    }
 }
