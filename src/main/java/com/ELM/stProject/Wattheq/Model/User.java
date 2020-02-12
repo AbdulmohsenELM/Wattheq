@@ -35,6 +35,9 @@ public class User {
     @JoinColumn(name = "OrganizationID")
     private Organization userOrganization;
 
+    @OneToMany(mappedBy = "userShareds", cascade = CascadeType.ALL)
+    private List<Shared> shareds = new ArrayList<>();
+
 
     public User() {}
 

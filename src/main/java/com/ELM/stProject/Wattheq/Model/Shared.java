@@ -1,9 +1,10 @@
 package com.ELM.stProject.Wattheq.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity(name = "Shared")
 @Table
@@ -12,21 +13,22 @@ public class Shared {
     @Id
     @Column(name = "SharedID")
     private int sharedID;
-    @Column(name = "UserID") //ManyToOne
-    private int userID;
-    @Column(name = "CertificateID") //ManyToMany
-    private int certificateID;
     @Column(name = "SharedDate")
     private String sharedDate;
     @Column(name = "SharedUrl")
     private String sharedUrl;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "UserID")
+    private User userShareds;
+
+    @ManyToMany(mappedBy = "shareds", cascade = {CascadeType.ALL})
+    private Set<Certificate> certificates = new HashSet<Certificate>();
+
     public Shared() {}
 
-    public Shared(int sharedID, int userID, int certificateID, String sharedDate, String sharedUrl) {
+    public Shared(int sharedID, String sharedDate, String sharedUrl) {
         this.sharedID = sharedID;
-        this.userID = userID;
-        this.certificateID = certificateID;
         this.sharedDate = sharedDate;
         this.sharedUrl = sharedUrl;
     }
@@ -37,22 +39,6 @@ public class Shared {
 
     public void setSharedID(int sharedID) {
         this.sharedID = sharedID;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public int getCertificateID() {
-        return certificateID;
-    }
-
-    public void setCertificateID(int certificateID) {
-        this.certificateID = certificateID;
     }
 
     public String getSharedDate() {

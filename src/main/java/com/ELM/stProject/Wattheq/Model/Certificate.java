@@ -1,6 +1,10 @@
 package com.ELM.stProject.Wattheq.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity(name = "Certificates")
 @Table
@@ -29,6 +33,14 @@ public class Certificate {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "OrganizationID")
     private Organization certificateOrganization;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "certificates_shareds",
+            joinColumns = {@JoinColumn(name = "CertificateID")},
+            inverseJoinColumns = {@JoinColumn(name = "SharedID")}
+            )
+    private Set<Shared> shareds = new HashSet<Shared>();
 
     public Certificate() {}
 
