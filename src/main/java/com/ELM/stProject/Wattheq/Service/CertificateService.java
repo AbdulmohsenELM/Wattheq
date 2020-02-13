@@ -13,6 +13,5 @@ public interface CertificateService {
     public Certificate updateCertificate(Certificate certificate, int certificateID);
     public void deleteCertificate (int certificateID);
     public void deleteAllCertificates();
-
     public Certificate uploadCertificate(MultipartFile file);
 }

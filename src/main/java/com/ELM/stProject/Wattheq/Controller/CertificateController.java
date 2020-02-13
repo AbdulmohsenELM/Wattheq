@@ -48,7 +48,6 @@ public class CertificateController {
 
     @PostMapping("/UploadCertificate")
     public Certificate uploadCertificate(@RequestParam("file") MultipartFile file) {
-        Certificate certificate = certificateService.uploadCertificate(file);
-        return certificate;
+        return certificateService.uploadCertificate(file);
     }
 }

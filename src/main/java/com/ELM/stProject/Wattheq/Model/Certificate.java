@@ -1,9 +1,7 @@
 package com.ELM.stProject.Wattheq.Model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "Certificates")
@@ -24,7 +22,6 @@ public class Certificate {
     private String certificateDate;
     @Column(name = "CertificateStatus")
     private String certificateStatus;
-
     @Column(name = "CertificateDocument")
     @Lob
     private byte[] certificateDocument;
