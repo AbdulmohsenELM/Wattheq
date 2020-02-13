@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CertificateRepo extends JpaRepository<Certificate, Integer> {
-    @Override
-    List<Certificate> findAll();
+
+
 }

@@ -11,6 +11,7 @@ import java.util.Set;
 public class Certificate {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CertificateID")
     private int certificateID;
     @Column(name = "CertificateName")
@@ -23,8 +24,10 @@ public class Certificate {
     private String certificateDate;
     @Column(name = "CertificateStatus")
     private String certificateStatus;
+
     @Column(name = "CertificateDocument")
-    private String certificateDocument;
+    @Lob
+    private byte[] certificateDocument;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "UserID")
@@ -44,13 +47,9 @@ public class Certificate {
 
     public Certificate() {}
 
-    public Certificate(int certificateID, String certificateName, String certificateType, String certificateDescription, String certificateDate, String certificateStatus, String certificateDocument) {
-        this.certificateID = certificateID;
+    public Certificate(String certificateName, String certificateType, byte[] certificateDocument) {
         this.certificateName = certificateName;
         this.certificateType = certificateType;
-        this.certificateDescription = certificateDescription;
-        this.certificateDate = certificateDate;
-        this.certificateStatus = certificateStatus;
         this.certificateDocument = certificateDocument;
     }
 
@@ -102,28 +101,12 @@ public class Certificate {
         this.certificateStatus = certificateStatus;
     }
 
-    public String getCertificateDocument() {
+    public byte[] getCertificateDocument() {
         return certificateDocument;
     }
 
-    public void setCertificateDocument(String certificateDocument) {
+    public void setCertificateDocument(byte[] certificateDocument) {
         this.certificateDocument = certificateDocument;
-    }
-
-    public User getUser() {
-        return userCertificates;
-    }
-
-    public void setUser(User userCertificates) {
-        this.userCertificates = userCertificates;
-    }
-
-    public Organization getOrganization() {
-        return certificateOrganization;
-    }
-
-    public void setOrganization(Organization certificateOrganization) {
-        this.certificateOrganization = certificateOrganization;
     }
 
     public User getUserCertificates() {

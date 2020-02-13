@@ -4,6 +4,8 @@ import com.ELM.stProject.Wattheq.Model.Certificate;
 import com.ELM.stProject.Wattheq.Service.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -42,5 +44,11 @@ public class CertificateController {
     @DeleteMapping(value = "DeleteAllCertificates")
     public void deleteAllCertificates() {
         certificateService.deleteAllCertificates();
+    }
+
+    @PostMapping("/UploadCertificate")
+    public Certificate uploadCertificate(@RequestParam("file") MultipartFile file) {
+        Certificate certificate = certificateService.uploadCertificate(file);
+        return certificate;
     }
 }
