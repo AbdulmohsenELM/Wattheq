@@ -3,20 +3,39 @@ package com.ELM.stProject.Wattheq.Controller;
 import com.ELM.stProject.Wattheq.Model.User;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/Users")
+@Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/AddUser")
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping(value = "/RegistrationPage")
+    public String RegistrationPage() {
+        return "RegistrationPage";
+    }
+
+    @RequestMapping(value = "IndividualsRegistrationPage")
+    public String IndividualsRegistrationPage(Model model) {
+        model.addAttribute("user", new User());
+        return "IndividualsRegistrationPage";
+    }
+
+    @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User user) {
+        userService.addUser(user);
+        return "redirect:/index";
     }
 
     @GetMapping(value = "/GetAllUsers")
