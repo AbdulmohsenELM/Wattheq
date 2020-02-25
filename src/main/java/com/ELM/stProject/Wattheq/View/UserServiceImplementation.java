@@ -1,5 +1,6 @@
 package com.ELM.stProject.Wattheq.View;
 
+import com.ELM.stProject.Wattheq.Model.Authority;
 import com.ELM.stProject.Wattheq.Model.User;
 import com.ELM.stProject.Wattheq.Repository.UserRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
@@ -27,6 +28,11 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User getUser(int userID) {
         return repo.findById(userID).get();
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return repo.findByEmail(email);
     }
 
     @Override

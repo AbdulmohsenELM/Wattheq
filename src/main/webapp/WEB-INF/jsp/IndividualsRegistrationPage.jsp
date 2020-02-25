@@ -1,78 +1,149 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
       <meta charset="utf-8">
       <title>Create an account</title>
+      <style type="text/css">
 
-      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: consolas;
+}
+input[type=text], input[type=number], input[type=password]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px black;
+}
+h1 {
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 62px;
+    font-weight: 800;
+    line-height: 72px;
+    margin: 0 0 24px;
+    text-align: center;
+    text-shadow: 3px 2px black;
+}
+button {
+    background-color: white;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.container {
+    background-color: #808080;
+    padding: 20px;
+    width: 65%;
+}
+.col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+.col-75 {
+    float: left;
+    width: 70%;
+    margin-top: 6px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media (max-width: 600px) {
+  .col-25, .col-75, button {
+        width: 100%;
+        margin-top: 0;
+  }
+}
+
+  </style>
   </head>
 
   <body>
+            <div class="container">
+            <h1>Create your account</h1>
 
-    <div>
+            <form:form method="POST" modelAttribute="user" action="AddUser">
 
-        <form:form method="POST" modelAttribute="user" action="AddUser">
-
-            <h2>Create your account</h2>
-
-            <spring:bind path="fullName">
-                <div>
-                    <form:input type="text" path="fullName" placeholder="Full Name"
-                                autofocus="true"></form:input>
-                    <form:errors path="fullName"></form:errors>
+              <div class="row">
+                <div class="col-25">
+                    <label for="Fullname">Full Name:</label>
                 </div>
-            </spring:bind>
-
-            <spring:bind path="nationalID">
-                                         <div>
-                                             <form:input type="text" path="nationalID" placeholder="National ID"></form:input>
-                                             <form:errors path="nationalID"></form:errors>
-                                         </div>
-            </spring:bind>
-
-            <spring:bind path="email">
-                            <div>
-                                <form:input type="text" path="email" placeholder="Email"
-                                            autofocus="true"></form:input>
-                                <form:errors path="email"></form:errors>
-                            </div>
-             </spring:bind>
-
-            <spring:bind path="password">
-                <div>
-                    <form:input type="password" path="password" placeholder="Password"></form:input>
-                    <form:errors path="password"></form:errors>
+                <div class="col-75">
+                    <form:input type="text" path="fullName"></form:input>
                 </div>
-            </spring:bind>
+              </div>
 
-            <spring:bind path="phoneNumber">
-                                        <div>
-                                            <form:input type="text" path="phoneNumber" placeholder="Phone Number"
-                                                        autofocus="true"></form:input>
-                                            <form:errors path="phoneNumber"></form:errors>
-                                        </div>
-             </spring:bind>
+              <div class="row">
+                <div class="col-25">
+                    <label for="National ID">National ID:</label>
+                </div>
+                <div class="col-75">
+                    <form:input type="text" path="nationalID"></form:input>
+                </div>
+              </div>
 
-            <spring:bind path="dob">
-                             <div>
-                                 <form:input type="text" path="dob" placeholder="Date of Birth"></form:input>
-                                 <form:errors path="dob"></form:errors>
-                             </div>
-             </spring:bind>
+              <div class="row">
+                <div class="col-25">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="col-75">
+                    <form:input type="text" path="email"></form:input>
+                </div>
+              </div>
 
-            <button type="submit">Submit</button>
-        </form:form>
+              <div class="row">
+                <div class="col-25">
+                    <label for="password">Password:</label>
+                </div>
+                <div class="col-75">
+                    <form:input type="password" path="password"></form:input>
+                </div>
+              </div>
 
-    </div>
+              <div class="row">
+                <div class="col-25">
+                    <label for="password">Phone Number:</label>
+                </div>
+                <div class="col-75">
+                    <form:input type="number" path="phoneNumber"></form:input>
+                </div>
+              </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+              <div class="row">
+                <div class="col-25">
+                    <label for="password">Date Of Birth:</label>
+                </div>
+                <div class="col-75">
+                    <form:input type="text" path="dob"></form:input>
+                </div>
+              </div>
+
+              <div class="row">
+                  <button type="submit">Submit</button>
+              </div>
+
+            </form:form>
+            </div>
   </body>
 </html>
 

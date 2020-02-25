@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,6 @@
 
 <title>Spring Boot</title>
 </head>
-<body align="center">
-    <h1>Spring Boot ------------ MVC web application example</h1>
-    <h1><a href="RegistrationPage"> GO TO Registration </a></h1>
+<body>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/index")
-    public String index() {
-        return "index";
+    @RequestMapping(value = "/homePage")
+    public String homePage() {
+        return "homePage";
     }
 
     @RequestMapping(value = "/RegistrationPage")
@@ -26,7 +27,7 @@ public class UserController {
         return "RegistrationPage";
     }
 
-    @RequestMapping(value = "IndividualsRegistrationPage")
+    @RequestMapping(value = "/IndividualsRegistrationPage")
     public String IndividualsRegistrationPage(Model model) {
         model.addAttribute("user", new User());
         return "IndividualsRegistrationPage";
@@ -35,8 +36,19 @@ public class UserController {
     @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
-        return "redirect:/index";
+        return "redirect:/homePage";
     }
+
+    @RequestMapping(value = "/LoginPage")
+    public String LoginPage(Model model) {
+        model.addAttribute("user", new User());
+        return "LoginPage";
+    }
+
+    /*@RequestMapping(value = "LoginHandler", method = RequestMethod.POST)
+    public String LoginHandler(@ModelAttribute("user") User user) {
+
+    }*/
 
     @GetMapping(value = "/GetAllUsers")
     public List<User> getAllUsers() {

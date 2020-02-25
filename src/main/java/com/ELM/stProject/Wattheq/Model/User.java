@@ -1,5 +1,7 @@
 package com.ELM.stProject.Wattheq.Model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
