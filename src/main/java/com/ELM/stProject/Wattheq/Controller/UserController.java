@@ -1,6 +1,8 @@
 package com.ELM.stProject.Wattheq.Controller;
 
+import com.ELM.stProject.Wattheq.Model.Organization;
 import com.ELM.stProject.Wattheq.Model.User;
+import com.ELM.stProject.Wattheq.Repository.OrganizationRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrganizationRepo organizationRepo;
 
-    @RequestMapping(value = "/homePage")
+    @RequestMapping(value = "/HomePage")
     public String homePage() {
-        return "homePage";
+        return "HomePage";
     }
 
     @RequestMapping(value = "/RegistrationPage")
@@ -36,7 +40,24 @@ public class UserController {
     @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
-        return "redirect:/homePage";
+        return "redirect:/HomePage";
+    }
+
+    @RequestMapping(value = "/OrganizationsRegistrationChoice")
+    public String OrganizationsRegistrationChoice() {
+        return "OrganizationsRegistrationChoice";
+    }
+
+    @RequestMapping(value = "/OrganizationsRegistrationPage")
+    public String OrganizationsRegistrationPage(Model model) {
+        model.addAttribute("organization", new Organization());
+        return "OrganizationsRegistrationPage";
+    }
+
+    @RequestMapping(value = "/AddOrganization", method = RequestMethod.POST)
+    public String AddOrganization(@ModelAttribute("organization") Organization organization) {
+        organizationRepo.save(organization);
+        return "redirect:/HomePage";
     }
 
     @RequestMapping(value = "/LoginPage")

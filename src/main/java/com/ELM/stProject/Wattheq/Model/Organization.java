@@ -9,6 +9,7 @@ import java.util.List;
 public class Organization {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "OrganizationID")
     private int organizationID;
     @Column(name = "OrganizationName")

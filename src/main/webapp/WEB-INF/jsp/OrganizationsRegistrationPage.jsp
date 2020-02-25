@@ -82,59 +82,32 @@ button {
             <div class="container">
             <h1>Create your account</h1>
 
-            <form:form method="POST" modelAttribute="user" action="AddOrganization">
+            <form:form method="POST" modelAttribute="organization" action="AddOrganization">
 
               <div class="row">
                 <div class="col-25">
-                    <label for="Fullname">Full Name:</label>
+                    <label for="Organization Name">Organization Name:</label>
                 </div>
                 <div class="col-75">
-                    <form:input type="text" path="fullName"></form:input>
+                    <form:input type="text" path="organizationName"></form:input>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-25">
-                    <label for="National ID">National ID:</label>
+                    <label for="Organization Contact Number">Organization Contact Number:</label>
                 </div>
                 <div class="col-75">
-                    <form:input type="text" path="nationalID"></form:input>
+                    <form:input type="text" path="organizationContactNumber"></form:input>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-25">
-                    <label for="email">Email:</label>
+                    <label for="Organization Address">Organization Address:</label>
                 </div>
                 <div class="col-75">
-                    <form:input type="text" path="email"></form:input>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-25">
-                    <label for="password">Password:</label>
-                </div>
-                <div class="col-75">
-                    <form:input type="password" path="password"></form:input>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-25">
-                    <label for="password">Phone Number:</label>
-                </div>
-                <div class="col-75">
-                    <form:input type="number" path="phoneNumber"></form:input>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-25">
-                    <label for="password">Date Of Birth:</label>
-                </div>
-                <div class="col-75">
-                    <form:input type="text" path="dob"></form:input>
+                    <form:input type="text" path="organizationAddress"></form:input>
                 </div>
               </div>
 

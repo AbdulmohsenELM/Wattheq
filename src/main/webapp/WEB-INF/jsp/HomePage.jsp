@@ -49,7 +49,7 @@ body {
 <body>
 
     <div class="icon-bar">
-    <a class="active" href="homePage"><i class="fa fa-home"></i> Home </a>
+    <a class="active" href="HomePage"><i class="fa fa-home"></i> Home </a>
     <a href="RegistrationPage"><i class="fa fa-user-plus"></i> Registration </a>
     <a href="LoginPage"><i class="fa fa-sign-in"></i> Login </a>
     </div>
