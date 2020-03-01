@@ -82,7 +82,7 @@ button {
             <div class="container">
             <h1>Create your account</h1>
 
-            <form:form method="POST" modelAttribute="user" action="AddOrganization">
+            <form:form method="POST" modelAttribute="user" action="AddUser">
 
               <div class="row">
                 <div class="col-25">

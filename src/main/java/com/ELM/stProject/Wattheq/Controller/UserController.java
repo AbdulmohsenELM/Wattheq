@@ -5,6 +5,7 @@ import com.ELM.stProject.Wattheq.Model.User;
 import com.ELM.stProject.Wattheq.Repository.OrganizationRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -68,7 +69,6 @@ public class UserController {
 
     /*@RequestMapping(value = "LoginHandler", method = RequestMethod.POST)
     public String LoginHandler(@ModelAttribute("user") User user) {
-
     }*/
 
     @GetMapping(value = "/GetAllUsers")
@@ -94,5 +94,11 @@ public class UserController {
     @DeleteMapping(value = "/DeleteAllUsers")
     public void deleteAllUsers() {
         userService.deleteAllUsers();
+    }
+
+    @GetMapping("/hello")
+    @ResponseBody
+    public ResponseEntity hello() {
+        return ResponseEntity.ok("hello");
     }
 }

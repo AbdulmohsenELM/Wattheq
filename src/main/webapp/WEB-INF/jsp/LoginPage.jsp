@@ -54,7 +54,9 @@ body {
     <a class="active" href="LoginPage"><i class="fa fa-sign-in"></i> Login </a>
     </div>
 
+
     <h1>Login Page</h1>
+
 
 </body>
 </html>
