@@ -26,6 +26,8 @@ public class User {
     private String password;
     @Column(name = "NationalID")
     private Long nationalID;
+    @Column(name = "Enabled")
+    private boolean enabled = true;
 
     @OneToMany(mappedBy = "userCertificates", cascade = CascadeType.ALL)
     private List<Certificate> certificates = new ArrayList<>();
@@ -37,10 +39,14 @@ public class User {
     @OneToMany(mappedBy = "userShareds", cascade = CascadeType.ALL)
     private List<Shared> shareds = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "authorityName", referencedColumnName = "authorityName")
+    private Authority authorityName;
+
 
     public User() {}
 
-    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, Long nationalID) {
+    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, Long nationalID, boolean enabled) {
         this.userID = userID;
         this.fullName = fullName;
         this.dob = dob;
@@ -48,6 +54,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.nationalID = nationalID;
+        this.enabled = enabled;
     }
 
     public int getUserID() {
@@ -106,20 +113,20 @@ public class User {
         this.nationalID = nationalID;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public List<Certificate> getCertificates() {
         return certificates;
     }
 
     public void setCertificates(List<Certificate> certificates) {
         this.certificates = certificates;
-    }
-
-    public Organization getOrganization() {
-        return userOrganization;
-    }
-
-    public void setOrganization(Organization userOrganization) {
-        this.userOrganization = userOrganization;
     }
 
     public Organization getUserOrganization() {
@@ -136,5 +143,13 @@ public class User {
 
     public void setShareds(List<Shared> shareds) {
         this.shareds = shareds;
+    }
+
+    public Authority getAuthorityName() {
+        return authorityName;
+    }
+
+    public void setAuthorityName(Authority authorityName) {
+        this.authorityName = authorityName;
     }
 }

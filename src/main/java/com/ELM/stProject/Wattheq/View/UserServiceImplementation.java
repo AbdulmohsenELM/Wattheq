@@ -5,6 +5,7 @@ import com.ELM.stProject.Wattheq.Model.User;
 import com.ELM.stProject.Wattheq.Repository.UserRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User addUser(User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         return repo.save(user);
     }
 

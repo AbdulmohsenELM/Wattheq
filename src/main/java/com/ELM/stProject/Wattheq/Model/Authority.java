@@ -1,28 +1,23 @@
 package com.ELM.stProject.Wattheq.Model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity(name = "Authority")
 @Table
 public class Authority {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "AuthorityID")
     private int authorityID;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "Authority")
-    private String authority;
+
+    @Id
+    @Column(name = "AuthorityName")
+    private String authorityName;
 
     public Authority() {}
 
-    public Authority(int authorityID, String authorityName, String authorityDescription) {
+    public Authority(int authorityID, String authorityName) {
         this.authorityID = authorityID;
-        this.username = authorityName;
-        this.authority = authorityDescription;
+        this.authorityName = authorityName;
     }
 
     public int getAuthorityID() {
@@ -33,19 +28,11 @@ public class Authority {
         this.authorityID = authorityID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAuthorityName() {
+        return authorityName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setAuthorityName(String authorityName) {
+        this.authorityName = authorityName;
     }
 }

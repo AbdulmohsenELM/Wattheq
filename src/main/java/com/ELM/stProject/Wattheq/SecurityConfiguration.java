@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT email, password, enabled FROM [Wattheq].[dbo].[users] WHERE email=? ")
-                .authoritiesByUsernameQuery("select username,authority from authority where username = ?")
+                .authoritiesByUsernameQuery("select email, authority_name from [Wattheq].[dbo].[users] where email = ?")
                 .passwordEncoder(new BCryptPasswordEncoder());
-    }}
+    }
+}
