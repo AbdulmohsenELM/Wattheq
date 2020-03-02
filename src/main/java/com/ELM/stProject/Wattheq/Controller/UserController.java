@@ -1,11 +1,14 @@
 package com.ELM.stProject.Wattheq.Controller;
 
+import com.ELM.stProject.Wattheq.Model.Authority;
 import com.ELM.stProject.Wattheq.Model.Organization;
 import com.ELM.stProject.Wattheq.Model.User;
+import com.ELM.stProject.Wattheq.Repository.AuthorityRepo;
 import com.ELM.stProject.Wattheq.Repository.OrganizationRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +24,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private OrganizationRepo organizationRepo;
+    @Autowired
+    private AuthorityRepo authorityRepo;
 
     @RequestMapping(value = "/HomePage")
     public String homePage() {
@@ -40,7 +45,14 @@ public class UserController {
 
     @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userService.addUser(user);
+        String username = user.getEmail();
+        String authority = "ROLE_INDIVIDUAL";
+        Authority auth = new Authority();
+        auth.setUsername(username);
+        auth.setAuthority(authority);
+        authorityRepo.save(auth);
         return "redirect:/HomePage";
     }
 
@@ -94,11 +106,5 @@ public class UserController {
     @DeleteMapping(value = "/DeleteAllUsers")
     public void deleteAllUsers() {
         userService.deleteAllUsers();
-    }
-
-    @GetMapping("/hello")
-    @ResponseBody
-    public ResponseEntity hello() {
-        return ResponseEntity.ok("hello");
     }
 }

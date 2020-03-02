@@ -31,10 +31,6 @@ public class User {
     private List<Certificate> certificates = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "AuthorityID")
-    private Authority authority;
-
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "OrganizationID")
     private Organization userOrganization;
 
@@ -116,14 +112,6 @@ public class User {
 
     public void setCertificates(List<Certificate> certificates) {
         this.certificates = certificates;
-    }
-
-    public Authority getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
     }
 
     public Organization getOrganization() {

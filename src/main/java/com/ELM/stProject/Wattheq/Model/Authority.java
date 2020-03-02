@@ -9,22 +9,20 @@ import java.util.List;
 public class Authority {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "AuthorityID")
     private int authorityID;
-    @Column(name = "AuthorityName")
-    private String authorityName;
-    @Column(name = "AuthorityDescription")
-    private String authorityDescription;
-
-    @OneToMany(mappedBy = "authority", cascade = CascadeType.ALL)
-    private List<User> users = new ArrayList<>();
+    @Column(name = "username")
+    private String username;
+    @Column(name = "Authority")
+    private String authority;
 
     public Authority() {}
 
     public Authority(int authorityID, String authorityName, String authorityDescription) {
         this.authorityID = authorityID;
-        this.authorityName = authorityName;
-        this.authorityDescription = authorityDescription;
+        this.username = authorityName;
+        this.authority = authorityDescription;
     }
 
     public int getAuthorityID() {
@@ -35,27 +33,19 @@ public class Authority {
         this.authorityID = authorityID;
     }
 
-    public String getAuthorityName() {
-        return authorityName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAuthorityName(String authorityName) {
-        this.authorityName = authorityName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getAuthorityDescription() {
-        return authorityDescription;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setAuthorityDescription(String authorityDescription) {
-        this.authorityDescription = authorityDescription;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }
