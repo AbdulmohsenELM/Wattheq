@@ -1,8 +1,11 @@
 package com.ELM.stProject.Wattheq.View;
 
+import com.ELM.stProject.Wattheq.DTO.CertificateDTO;
+import com.ELM.stProject.Wattheq.DTO.ObjectMapperUtils;
 import com.ELM.stProject.Wattheq.Model.Certificate;
 import com.ELM.stProject.Wattheq.Repository.CertificateRepo;
 import com.ELM.stProject.Wattheq.Service.CertificateService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -15,6 +18,8 @@ public class CertificateServiceImplementation implements CertificateService {
 
     @Autowired
     private CertificateRepo repo;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public Certificate addCertificate(Certificate certificate) {
@@ -22,22 +27,22 @@ public class CertificateServiceImplementation implements CertificateService {
     }
 
     @Override
-    public List<Certificate> getAllCertificates() {
-        return repo.findAll();
+    public List<CertificateDTO> getAllCertificates() {
+        List<Certificate> certificates = repo.findAll();
+        List<CertificateDTO> certificateDTOS = ObjectMapperUtils.mapAll(certificates, CertificateDTO.class);
+        return certificateDTOS;
     }
 
     @Override
-    public Certificate getCertificate(int certificateID) {
-        return repo.findById(certificateID).get();
+    public CertificateDTO getCertificate(int certificateID) {
+        Certificate certificate = repo.findById(certificateID).get();
+        CertificateDTO certificateDTO = modelMapper.map(certificate, CertificateDTO.class);
+        return certificateDTO;
     }
 
     @Override
     public Certificate updateCertificate(Certificate certificate, int certificateID) {
-        Certificate newCert = getCertificate(certificateID);
         certificate.setCertificateID(certificateID);
-        certificate.setCertificateName(newCert.getCertificateName());
-        certificate.setCertificateDocument(newCert.getCertificateDocument());
-        certificate.setCertificateType(newCert.getCertificateType());
         return repo.save(certificate);
     }
 

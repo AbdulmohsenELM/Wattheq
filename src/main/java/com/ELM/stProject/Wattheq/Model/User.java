@@ -26,7 +26,6 @@ public class User {
     private int phoneNumber;
 
     @Column(name = "Email")
-    @Email(message = "Enter a valid email address")
     private String email;
 
     @Column(name = "Password")

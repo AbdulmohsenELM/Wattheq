@@ -1,5 +1,6 @@
 package com.ELM.stProject.Wattheq.Controller;
 
+import com.ELM.stProject.Wattheq.DTO.CertificateDTO;
 import com.ELM.stProject.Wattheq.Model.Certificate;
 import com.ELM.stProject.Wattheq.Service.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ public class CertificateController {
     }
 
     @GetMapping(value = "/GetAllCertificates")
-    public List<Certificate> getAllCertificates() {
+    public List<CertificateDTO> getAllCertificates() {
         return certificateService.getAllCertificates();
     }
 
-    @GetMapping(value = "/GetCertificate/{certificateID}")
-    public Certificate getCertificate(@PathVariable("certificateID") int certificateID) {
+    @GetMapping(value = "/GetAllCertificates/{certificateID}")
+    public CertificateDTO getCertificate(@PathVariable("certificateID") int certificateID) {
         return certificateService.getCertificate(certificateID);
     }
 
@@ -34,14 +35,14 @@ public class CertificateController {
         return certificateService.updateCertificate(certificate, certificateID);
     }
 
-    @DeleteMapping(value = "DeleteCertificate/{certificateID}")
-    public void deleteCertificate(@PathVariable("certificateID") int certificateID) {
-        certificateService.deleteCertificate(certificateID);
-    }
-
     @DeleteMapping(value = "DeleteAllCertificates")
     public void deleteAllCertificates() {
         certificateService.deleteAllCertificates();
+    }
+
+    @DeleteMapping(value = "DeleteAllCertificates/{certificateID}")
+    public void deleteCertificate(@PathVariable("certificateID") int certificateID) {
+        certificateService.deleteCertificate(certificateID);
     }
 
     @PostMapping("/UploadCertificate")

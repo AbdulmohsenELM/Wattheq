@@ -65,7 +65,7 @@ public class UserController {
     }*/
 
     @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
-    public String addUser(@Valid @RequestBody User user) {
+    public String addUser(@RequestBody User user) {
         userService.addUser(user);
         return "Added Successfully";
     }
