@@ -1,17 +1,19 @@
 package com.ELM.stProject.Wattheq.Controller;
 
+import com.ELM.stProject.Wattheq.DTO.UserDTO;
 import com.ELM.stProject.Wattheq.Model.Organization;
 import com.ELM.stProject.Wattheq.Model.User;
 import com.ELM.stProject.Wattheq.Repository.OrganizationRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = "/Users")
 public class UserController {
 
     @Autowired
@@ -19,7 +21,7 @@ public class UserController {
     @Autowired
     private OrganizationRepo organizationRepo;
 
-    @RequestMapping(value = "/")
+/*    @RequestMapping(value = "/")
     public String indexPage() {
         return "HomePage";
     }
@@ -40,12 +42,6 @@ public class UserController {
         return "IndividualsRegistrationPage";
     }
 
-    @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) {
-        userService.addUser(user);
-        return "redirect:/HomePage";
-    }
-
     @RequestMapping(value = "/OrganizationsRegistrationChoice")
     public String OrganizationsRegistrationChoice() {
         return "OrganizationsRegistrationChoice";
@@ -57,29 +53,36 @@ public class UserController {
         return "OrganizationsRegistrationPage";
     }
 
-    @RequestMapping(value = "/AddOrganization", method = RequestMethod.POST)
-    public String AddOrganization(@ModelAttribute("organization") Organization organization) {
-        organizationRepo.save(organization);
-        return "redirect:/HomePage";
-    }
-
     @RequestMapping(value = "/LoginPage")
     public String LoginPage(Model model) {
         model.addAttribute("user", new User());
         return "LoginPage";
     }
 
-    /*@RequestMapping(value = "LoginHandler", method = RequestMethod.POST)
+    @RequestMapping(value = "LoginHandler", method = RequestMethod.POST)
     public String LoginHandler(@ModelAttribute("user") User user) {
+        return "";
     }*/
 
+    @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
+    public String addUser(@Valid @RequestBody User user) {
+        userService.addUser(user);
+        return "Added Successfully";
+    }
+
+    @RequestMapping(value = "/AddOrganization", method = RequestMethod.POST)
+    public String AddOrganization(@RequestBody Organization organization) {
+        organizationRepo.save(organization);
+        return "Added Successfully";
+    }
+
     @GetMapping(value = "/GetAllUsers")
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/GetUser/{userID}")
-    public User getUser(@PathVariable("userID") int userID) {
+    @GetMapping(value = "/GetAllUsers/{userID}")
+    public UserDTO getUser(@PathVariable("userID") int userID) {
         return userService.getUser(userID);
     }
 
@@ -88,13 +91,13 @@ public class UserController {
         return userService.updateUser(user, userID);
     }
 
-    @DeleteMapping(value = "/DeleteUser/{userID}")
-    public void deleteUser(@PathVariable("userID") int userID) {
-        userService.deleteUser(userID);
-    }
-
     @DeleteMapping(value = "/DeleteAllUsers")
     public void deleteAllUsers() {
         userService.deleteAllUsers();
+    }
+
+    @DeleteMapping(value = "/DeleteAllUsers/{userID}")
+    public void deleteUser(@PathVariable("userID") int userID) {
+        userService.deleteUser(userID);
     }
 }

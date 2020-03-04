@@ -3,6 +3,7 @@ package com.ELM.stProject.Wattheq.Model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +15,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "UserID")
     private int userID;
+
     @Column(name = "FullName")
     private String fullName;
+
     @Column(name = "DateOfBirth")
     private String dob;
+
     @Column(name = "PhoneNumber")
     private int phoneNumber;
+
     @Column(name = "Email")
+    @Email(message = "Enter a valid email address")
     private String email;
+
     @Column(name = "Password")
     private String password;
+
     @Column(name = "NationalID")
     private Long nationalID;
+
     @Column(name = "Enabled")
     private boolean enabled = true;
 
