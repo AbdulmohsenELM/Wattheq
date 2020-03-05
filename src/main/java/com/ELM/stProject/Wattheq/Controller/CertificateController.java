@@ -25,7 +25,7 @@ public class CertificateController {
         return certificateService.getAllCertificates();
     }
 
-    @GetMapping(value = "/GetAllCertificates/{certificateID}")
+    @GetMapping(value = "/GetCertificate/{certificateID}")
     public CertificateDTO getCertificate(@PathVariable("certificateID") int certificateID) {
         return certificateService.getCertificate(certificateID);
     }
@@ -35,12 +35,7 @@ public class CertificateController {
         return certificateService.updateCertificate(certificate, certificateID);
     }
 
-    @DeleteMapping(value = "DeleteAllCertificates")
-    public void deleteAllCertificates() {
-        certificateService.deleteAllCertificates();
-    }
-
-    @DeleteMapping(value = "DeleteAllCertificates/{certificateID}")
+    @DeleteMapping(value = "DeleteCertificate/{certificateID}")
     public void deleteCertificate(@PathVariable("certificateID") int certificateID) {
         certificateService.deleteCertificate(certificateID);
     }

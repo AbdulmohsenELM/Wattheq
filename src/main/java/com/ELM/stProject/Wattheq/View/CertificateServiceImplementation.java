@@ -52,11 +52,6 @@ public class CertificateServiceImplementation implements CertificateService {
     }
 
     @Override
-    public void deleteAllCertificates() {
-        repo.deleteAll();
-    }
-
-    @Override
     public Certificate uploadCertificate(MultipartFile file) {
         try {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());

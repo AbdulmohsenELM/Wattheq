@@ -1,8 +1,11 @@
 package com.ELM.stProject.Wattheq.View;
 
 import com.ELM.stProject.Wattheq.DTO.ObjectMapperUtils;
+import com.ELM.stProject.Wattheq.DTO.OrganizationDTO;
 import com.ELM.stProject.Wattheq.DTO.UserDTO;
+import com.ELM.stProject.Wattheq.Model.Organization;
 import com.ELM.stProject.Wattheq.Model.User;
+import com.ELM.stProject.Wattheq.Repository.OrganizationRepo;
 import com.ELM.stProject.Wattheq.Repository.UserRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.modelmapper.ModelMapper;
@@ -18,11 +21,14 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     private UserRepo repo;
     @Autowired
+    private OrganizationRepo organizationRepo;
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public User addUser(User user) {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        String pass = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(pass);
         return repo.save(user);
     }
 
@@ -34,15 +40,17 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public UserDTO getUser(int userID) {
+    public UserDTO getUserByID(int userID) {
         User user = repo.findById(userID).get();
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);
         return userDTO;
     }
 
     @Override
-    public User findByEmail(String email) {
-        return repo.findByEmail(email);
+    public UserDTO getUserByEmail(String email) {
+        User user =  repo.findByEmail(email);
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        return userDTO;
     }
 
     @Override
@@ -56,8 +64,11 @@ public class UserServiceImplementation implements UserService {
         repo.deleteById(userID);
     }
 
-    @Override
-    public void deleteAllUsers() {
-        repo.deleteAll();
+    //<<------------------------------------------->>\\
+
+    public OrganizationDTO findByOrganizationName(String organizationName) {
+        Organization organization = organizationRepo.findByOrganizationName(organizationName);
+        OrganizationDTO organizationDTO = modelMapper.map(organization, OrganizationDTO.class);
+        return organizationDTO;
     }
 }

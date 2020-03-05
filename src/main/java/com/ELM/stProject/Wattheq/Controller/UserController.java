@@ -1,12 +1,12 @@
 package com.ELM.stProject.Wattheq.Controller;
 
+import com.ELM.stProject.Wattheq.DTO.OrganizationDTO;
 import com.ELM.stProject.Wattheq.DTO.UserDTO;
 import com.ELM.stProject.Wattheq.Model.Organization;
 import com.ELM.stProject.Wattheq.Model.User;
 import com.ELM.stProject.Wattheq.Repository.OrganizationRepo;
 import com.ELM.stProject.Wattheq.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -65,14 +65,8 @@ public class UserController {
     }*/
 
     @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
-    public String addUser(@RequestBody User user) {
+    public String addUser(@Valid @RequestBody User user) {
         userService.addUser(user);
-        return "Added Successfully";
-    }
-
-    @RequestMapping(value = "/AddOrganization", method = RequestMethod.POST)
-    public String AddOrganization(@RequestBody Organization organization) {
-        organizationRepo.save(organization);
         return "Added Successfully";
     }
 
@@ -81,9 +75,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value = "/GetAllUsers/{userID}")
-    public UserDTO getUser(@PathVariable("userID") int userID) {
-        return userService.getUser(userID);
+    @GetMapping(value = "/GetUser/{userID}")
+    public UserDTO getUserByID(@PathVariable("userID") int userID) {
+        return userService.getUserByID(userID);
+    }
+
+    @GetMapping(value = "/GetUserByEmail/{email}")
+    public UserDTO getUserByEmail(@PathVariable("email") String email) {
+        return userService.getUserByEmail(email);
     }
 
     @PutMapping(value = "/UpdateUser/{userID}")
@@ -91,13 +90,21 @@ public class UserController {
         return userService.updateUser(user, userID);
     }
 
-    @DeleteMapping(value = "/DeleteAllUsers")
-    public void deleteAllUsers() {
-        userService.deleteAllUsers();
-    }
-
-    @DeleteMapping(value = "/DeleteAllUsers/{userID}")
+    @DeleteMapping(value = "/DeleteUser/{userID}")
     public void deleteUser(@PathVariable("userID") int userID) {
         userService.deleteUser(userID);
+    }
+
+    //<<------------------------------------------->>\\
+
+    @RequestMapping(value = "/AddOrganization", method = RequestMethod.POST)
+    public String AddOrganization(@RequestBody Organization organization) {
+        organizationRepo.save(organization);
+        return "Added Successfully";
+    }
+
+    @GetMapping(value = "/GetOrganization/{organizationName}")
+    public OrganizationDTO findByOrganizationName(@PathVariable("organizationName") String organizationName) {
+        return userService.findByOrganizationName(organizationName);
     }
 }

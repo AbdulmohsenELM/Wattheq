@@ -1,10 +1,12 @@
 package com.ELM.stProject.Wattheq.Model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,23 +18,41 @@ public class User {
     @Column(name = "UserID")
     private int userID;
 
+    @NotBlank
+    @NotNull
+    @Size(min = 5)
     @Column(name = "FullName")
     private String fullName;
 
+    @NotNull
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateOfBirth")
-    private String dob;
+    private Date dob;
 
+    @NotBlank
+    @NotNull
+    @Size(min = 10, max = 10)
     @Column(name = "PhoneNumber")
-    private int phoneNumber;
+    private String phoneNumber;
 
-    @Column(name = "Email")
+    @Email
+    @NotBlank
+    @NotNull
+    @Size(min = 5)
+    @Column(name = "Email", unique = true)
     private String email;
 
+    @NotBlank
+    @NotNull
+    @Size(min = 8)
     @Column(name = "Password")
     private String password;
 
+    @NotBlank
+    @NotNull
+    @Size(min = 10, max = 10)
     @Column(name = "NationalID")
-    private Long nationalID;
+    private String nationalID;
 
     @Column(name = "Enabled")
     private boolean enabled = true;
@@ -54,7 +74,7 @@ public class User {
 
     public User() {}
 
-    public User(int userID, String fullName, String dob, int phoneNumber, String email, String password, Long nationalID, boolean enabled) {
+    public User(int userID, String fullName, Date dob, String phoneNumber, String email, String password, String nationalID, boolean enabled) {
         this.userID = userID;
         this.fullName = fullName;
         this.dob = dob;
@@ -81,19 +101,19 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -113,11 +133,11 @@ public class User {
         this.password = password;
     }
 
-    public Long getNationalID() {
+    public String getNationalID() {
         return nationalID;
     }
 
-    public void setNationalID(Long nationalID) {
+    public void setNationalID(String nationalID) {
         this.nationalID = nationalID;
     }
 
